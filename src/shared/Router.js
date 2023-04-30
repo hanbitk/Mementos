@@ -9,7 +9,7 @@ import SignIn from "../pages/SignIn";
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* <Layout> */}
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="feeds" element={<Feeds />} />
@@ -17,7 +17,7 @@ const Router = () => {
           <Route path="feeds/:id" element={<FeedDetail />} />
           <Route path="sign-in" element={<SignIn/>}/>
         </Routes>
-      {/* </Layout> */}
+      </Layout>
     </BrowserRouter>
   );
 };

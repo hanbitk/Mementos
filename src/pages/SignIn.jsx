@@ -32,5 +32,6 @@ const linkStyle = {
   textDecoration: "none",
   fontSize: "20px",
   border: "1px solid white",
-  padding: "10px", 
+  padding: "10px",
+  borderRadius: "10px",  
 };

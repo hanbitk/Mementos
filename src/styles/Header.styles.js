@@ -7,8 +7,9 @@ export const StHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(221, 221, 221, 0.1);
+  background: var(--color-white);
   position: fixed;
+  top: 0;
 `;
 
 export const StLogo = styled.h1`
@@ -41,6 +42,7 @@ export const StIcon = styled.div`
   align-items: center;
   margin-right: 10px;
   cursor: pointer;
+  font-size: var(--font-medium);
 `;
 
 export const StyleFlex = {

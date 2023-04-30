@@ -40,6 +40,7 @@ export const GlobalStyles = createGlobalStyle`
     body{
         font-family: 'Inter', sans-serif;
         background-color: var(--color-white);
+        padding-top: 130px;
     }
 
     button{
