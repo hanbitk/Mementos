@@ -11,8 +11,8 @@ const GlobalStyles = createGlobalStyle`
         --color-light-gray: #dddddd;
 
         /* Font size */
-        --font-large: 60px;
-        --font-medium: 32px;
+        --font-large: 32px;
+        --font-medium: 20px;
         --font-regular: 16px;
         --font-small: 14px;
         --font-micro: 12px;
@@ -24,10 +24,10 @@ const GlobalStyles = createGlobalStyle`
         --weight-light: 300;
 
         /* Size */
-        --size-extra-large: 300px;
-        --size-large: 200px;
-        --size-medium: 150px;
-        --size-small: 100px;
+        --size-extra-large: 200px;
+        --size-large: 150px;
+        --size-medium: 100px;
+        --size-small: 80px;
         --size-border-radius: 10px;
     }
 
