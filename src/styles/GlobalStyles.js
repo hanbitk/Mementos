@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+export const GlobalStyles = createGlobalStyle`
     :root{
         /* Color */
         --color-black: #000000; /* 191919 */
@@ -55,7 +54,18 @@ const GlobalStyles = createGlobalStyle`
         background-image: none;
         background-color: transparent;
         box-shadow: none;
-} 
+    } 
+
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
 `;
 
-export default GlobalStyles;
+export const linkStyle = {
+  textDecoration: "none",
+  color: "black",
+  cursor: "pointer",
+};
