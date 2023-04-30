@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { StHeader, StIcon, StLogo, StNavbar } from "../../styles/Header.styles";
 import { FaSistrix } from "react-icons/fa";
 import Button from "../Button/Button";
@@ -7,6 +8,7 @@ import { linkStyle } from "../../styles/GlobalStyles";
 import { StyleFlex } from "../../styles/Header.styles";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <StHeader>
       <div style={StyleFlex}>
@@ -29,7 +31,7 @@ function Header() {
         <StIcon>
           <FaSistrix />
         </StIcon>
-        <Button size="var(--size-small)" fontSize="var(--font-regular: 16px)">
+        <Button onClick={() => navigate("/sign-in")} size="var(--size-small)" fontSize="var(--font-regular: 16px)">
           Sign In
         </Button>
       </div>
