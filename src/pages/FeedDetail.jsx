@@ -1,15 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { datas } from "../shared/datas";
+import { useSelector } from "react-redux";
 
 function FeedDetail() {
+  const todos = useSelector((state) => state.todos);
   const params = useParams();
+  const foundTodo = todos.find((todo) => todo.id === params.id);
 
-  const foundData = datas.find((data) => data.id === parseInt(params.id));
-
-  return <div>
-    <p>{foundData.description}</p>
-  </div>;
+  return (
+    <div>
+      <p>{foundTodo.title}</p>
+    </div>
+  );
 }
 
 export default FeedDetail;
