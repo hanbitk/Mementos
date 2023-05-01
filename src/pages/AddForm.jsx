@@ -12,37 +12,35 @@ import {
 import { StContainer } from "../styles/Container.styles";
 import Button from "../components/Button/Button";
 import { btnDiv } from "../styles/AddForm.styles";
-import { addTodo } from "../redux/modules/todos";
+import { addPost } from "../redux/modules/posts";
 import { useNavigate } from "react-router-dom";
 
 function AddForm() {
   const navigate = useNavigate();
-  const todos = useSelector((state) => state.todos);
+  const posts = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
   const id = uuidv4();
 
-  const [todo, setTodo] = useState({
+  const [post, setPost] = useState({
     id: 0,
     title: "",
-    body: "",
-    isDone: false,
+    description: "",
   });
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    setTodo({ ...todo, [name]: value });
+    setPost({ ...post, [name]: value });
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(addTodo({ ...todo, id }));
-    setTodo({
+    dispatch(addPost({ ...post, id }));
+    setPost({
       id: 0,
       title: "",
-      body: "",
-      isDone: false,
+      description: "",
     });
 
     setTimeout(() =>{
@@ -62,7 +60,7 @@ function AddForm() {
             <div>
               <StTitle>Title</StTitle>
               <StInput
-                value={todo.title}
+                value={post.title}
                 name="title"
                 placeholder="Title"
                 onChange={onChangeHandler}
@@ -71,7 +69,7 @@ function AddForm() {
             <div>
               <StTitle>Description</StTitle>
               <StTextarea
-                value={todo.description}
+                value={post.description}
                 name="description"
                 rows="15"
                 cols="50"

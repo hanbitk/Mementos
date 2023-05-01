@@ -8,7 +8,7 @@ import Feed from "../components/Feed/Feed";
 function Feeds() {
   const navigate = useNavigate();
 
-  const todos = useSelector((state) => state.todos.todo);
+  const posts = useSelector((state) => state.posts.post);
 
   return (
     <div>

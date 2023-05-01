@@ -9,10 +9,9 @@ import {
 } from "../../styles/Feed.styles";
 import { TiDelete } from "react-icons/ti";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo } from "../../redux/modules/todos";
 import Masonry from "react-masonry-css";
-import { Link, useNavigate } from "react-router-dom";
-import { style } from "../../styles/Feed.styles";
+import { useNavigate } from "react-router-dom";
+import { deletePost } from "../../redux/modules/posts";
 
 function Feed() {
   const getCurrentDate = () => {
@@ -27,11 +26,11 @@ function Feed() {
 
   const navigate = useNavigate();
 
-  const todos = useSelector((state) => state.todos.todos);
+  const posts = useSelector((state) => state.posts.posts);
   const dispatch = useDispatch();
 
   const deleteHandler = (id) => {
-    dispatch(deleteTodo(id));
+    dispatch(deletePost(id));
   };
 
   const breakpoints = {
@@ -47,21 +46,18 @@ function Feed() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {todos.map((todo) => {
+        {posts.map((post) => {
           return (
-            // <Link to={`/feeds/${todo.id}`} style={style}>
-            // onClick={() => navigate(`/feeds/${todo.id}`)}
-            <StFeed key={todo.id} onClick={() => navigate(`/feeds/${todo.id}`)}>
+            <StFeed key={post.id} onClick={() => navigate(`/feeds/${post.id}`)}>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <StFeedtitle>{todo.title}</StFeedtitle>
-                <StDeleteButton onClick={() => deleteHandler(todo.id)}>
+                <StFeedtitle>{post.title}</StFeedtitle>
+                <StDeleteButton onClick={() => deleteHandler(post.id)}>
                   <TiDelete />
                 </StDeleteButton>
               </div>
-              <StFeedDescription>{todo.description}</StFeedDescription>
+              <StFeedDescription>{post.description}</StFeedDescription>
               <StFeedDate>{getCurrentDate()}</StFeedDate>
             </StFeed>
-            // </Link>
           );
         })}
       </Masonry>

@@ -1,11 +1,11 @@
 import {useEffect} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getTodoByID } from "../redux/modules/todos";
+import { getPostByID } from "../redux/modules/posts";
 
 
 function FeedDetail() {
-  const todos = useSelector((state) => state.todos);
+  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function FeedDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getTodoByID(id));
+    dispatch(getPostByID(id));
   }, [dispatch, id]);
 
   return (

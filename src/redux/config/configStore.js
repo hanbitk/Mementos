@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todos from "../modules/todos";
+import posts from "../modules/posts";
 
 const store = configureStore({
   reducer: {
-    todos,
+    posts,
   },
 });
 
