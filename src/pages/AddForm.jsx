@@ -16,7 +16,9 @@ function AddForm() {
     <div>
       <StContainer display="flex">
         <StForm>
-          <StImgSection>🛠️ Upload Img <br/> Coming Soon 🛠️</StImgSection>
+          <StImgSection>
+            🛠️ Upload Img <br /> Coming Soon 🛠️
+          </StImgSection>
 
           <StFormSection>
             <div>
@@ -25,10 +27,14 @@ function AddForm() {
             </div>
             <div>
               <StTitle>Description</StTitle>
-              <StTextarea rows="15" cols="50" placeholder="What was your best Memento?" />
+              <StTextarea
+                rows="15"
+                cols="50"
+                placeholder="What was your best Memento?"
+              />
             </div>
             <div style={btnDiv}>
-              <Button>+ Memento</Button>
+              <Button fontSize="var(--font-size-regular)">+ Memento</Button>
             </div>
           </StFormSection>
         </StForm>
