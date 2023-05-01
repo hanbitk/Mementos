@@ -12,9 +12,11 @@ import {
 import { StContainer } from "../styles/Container.styles";
 import Button from "../components/Button/Button";
 import { btnDiv } from "../styles/AddForm.styles";
-import addTodo from "../redux/modules/todos";
+import { addTodo } from "../redux/modules/todos";
+import { useNavigate } from "react-router-dom";
 
 function AddForm() {
+  const navigate = useNavigate();
   const todos = useSelector((state) => state.todos);
 
   const dispatch = useDispatch();
@@ -34,10 +36,17 @@ function AddForm() {
     e.preventDefault();
     const newTodo = {
       id: uuidv4(),
-      title,
+      title: '#' + title,
       description,
     };
     dispatch(addTodo(newTodo));
+
+    setTitle('');
+    setDescription('');
+
+    setTimeout(() =>{
+      navigate("/feeds");
+    }, 1500)
   };
 
   return (
@@ -54,7 +63,7 @@ function AddForm() {
               <StInput
                 value={title}
                 name="title"
-                placeholder="#Title"
+                placeholder="Title"
                 onChange={inputChangeHandler}
               />
             </div>

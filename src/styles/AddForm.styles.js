@@ -48,6 +48,7 @@ export const StTextarea = styled.textarea`
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: var(--color-white);
+  font-family: "Inter", sans-serif;
 
   ::placeholder {
     font-family: "Inter", sans-serif;
