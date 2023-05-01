@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { StContainer } from "../styles/Container.styles";
 import AddSection from "../components/AddSection/AddSection";
 import Feed from "../components/Feed/Feed";
 
 function Feeds() {
-  const navigate = useNavigate();
-
-  const posts = useSelector((state) => state.posts.post);
-
   return (
     <div>
       <StContainer>

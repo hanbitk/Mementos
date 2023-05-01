@@ -16,13 +16,12 @@ import { addPost } from "../redux/modules/posts";
 import { useNavigate } from "react-router-dom";
 
 function AddForm() {
-  const navigate = useNavigate();
-  const posts = useSelector((state) => state.posts);
-
-  const dispatch = useDispatch();
-
   const id = uuidv4();
+  const navigate = useNavigate();
 
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  
   const [post, setPost] = useState({
     id: 0,
     title: "",
@@ -33,6 +32,7 @@ function AddForm() {
     const { name, value } = event.target;
     setPost({ ...post, [name]: value });
   };
+
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ import {
 import { TiDelete } from "react-icons/ti";
 import { useSelector, useDispatch } from "react-redux";
 import Masonry from "react-masonry-css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deletePost } from "../../redux/modules/posts";
 
 function Feed() {
@@ -24,10 +24,10 @@ function Feed() {
     return currentDate;
   };
 
-  const navigate = useNavigate();
-
   const posts = useSelector((state) => state.posts.posts);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const deleteHandler = (id) => {
     dispatch(deletePost(id));
@@ -38,7 +38,6 @@ function Feed() {
     1100: 2,
     700: 1,
   };
-
   return (
     <StFeedContainer>
       <Masonry
@@ -48,16 +47,23 @@ function Feed() {
       >
         {posts.map((post) => {
           return (
+            // <Link to={`/feeds/${post.id}`}>
             <StFeed key={post.id} onClick={() => navigate(`/feeds/${post.id}`)}>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <StFeedtitle>{post.title}</StFeedtitle>
-                <StDeleteButton onClick={() => deleteHandler(post.id)}>
+                <StDeleteButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteHandler(post.id);
+                  }}
+                >
                   <TiDelete />
                 </StDeleteButton>
               </div>
               <StFeedDescription>{post.description}</StFeedDescription>
               <StFeedDate>{getCurrentDate()}</StFeedDate>
             </StFeed>
+            // </Link>
           );
         })}
       </Masonry>
