@@ -1,15 +1,24 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useEffect} from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getTodoByID } from "../redux/modules/todos";
+
 
 function FeedDetail() {
   const todos = useSelector((state) => state.todos);
-  const params = useParams();
-  const foundTodo = todos.find((todo) => todo.id === params.id);
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getTodoByID(id));
+  }, [dispatch, id]);
 
   return (
     <div>
-      <p>{foundTodo.title}</p>
+      {/* <p>{description}</p> */}
     </div>
   );
 }

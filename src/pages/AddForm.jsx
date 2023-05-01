@@ -21,32 +21,33 @@ function AddForm() {
 
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const id = uuidv4();
 
-  const inputChangeHandler = (e) => {
-    setTitle(e.target.value);
-  };
+  const [todo, setTodo] = useState({
+    id: 0,
+    title: "",
+    body: "",
+    isDone: false,
+  });
 
-  const textareaChangeHandler = (e) => {
-    setDescription(e.target.value);
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setTodo({ ...todo, [name]: value });
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const newTodo = {
-      id: uuidv4(),
-      title: '#' + title,
-      description,
-    };
-    dispatch(addTodo(newTodo));
-
-    setTitle('');
-    setDescription('');
+    dispatch(addTodo({ ...todo, id }));
+    setTodo({
+      id: 0,
+      title: "",
+      body: "",
+      isDone: false,
+    });
 
     setTimeout(() =>{
       navigate("/feeds");
-    }, 1500)
+    }, 1000)
   };
 
   return (
@@ -61,21 +62,21 @@ function AddForm() {
             <div>
               <StTitle>Title</StTitle>
               <StInput
-                value={title}
+                value={todo.title}
                 name="title"
                 placeholder="Title"
-                onChange={inputChangeHandler}
+                onChange={onChangeHandler}
               />
             </div>
             <div>
               <StTitle>Description</StTitle>
               <StTextarea
-                value={description}
+                value={todo.description}
                 name="description"
                 rows="15"
                 cols="50"
                 placeholder="What was your best Memento?"
-                onChange={textareaChangeHandler}
+                onChange={onChangeHandler}
               />
             </div>
             <div style={btnDiv}>

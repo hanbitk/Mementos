@@ -35,3 +35,7 @@ export const StDeleteButton = styled.button`
     font-size: var(--font-medium);
     cursor: pointer;
 `
+export const style = {
+    textDecoration: 'none',
+    color: 'black',
+}
