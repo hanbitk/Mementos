@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { Stbutton } from '../../styles/Button.styles'
 
 function Button({children, size, fontSize, onClick}) {

@@ -63,6 +63,16 @@ export const GlobalStyles = createGlobalStyle`
         padding: 0;
         margin: 0;
     }
+
+    textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+}
     
 `;
 

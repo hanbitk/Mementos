@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
 import {
-  StContainer,
   StAddSection,
   StTitle,
   title,
   description,
 } from "../styles/AddSection.styles";
+import { StContainer } from "../styles/Container.styles";
 
 function Home() {
   const navigate = useNavigate();
