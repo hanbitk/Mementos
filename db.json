@@ -1,0 +1,52 @@
+{
+  "posts": [
+    {
+      "title": "Best Memento ",
+      "description": "qqqqq",
+      "writer": "user1",
+      "id": 0
+    },
+    {
+      "id": "b128b579-4427-402d-9489-668b01df2584",
+      "title": "aaaaaaaaaaaaaa",
+      "description": "마자용ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
+      "writer": "aaaaaa",
+      "date": "02.05.2023"
+    },
+    {
+      "id": "c12004b0-a278-40b4-8cd4-d8896b87d383",
+      "title": "마자용ㅇㅇㅇㅇㅇㅇㅇ",
+      "description": "그래용ㅇㅇㅇㅇㅇ",
+      "writer": "포케몬",
+      "date": "02.05.2023"
+    },
+    {
+      "id": "aad872a5-17f6-44c3-921c-1f8fc3b4819b",
+      "title": "11",
+      "description": "11",
+      "writer": "11",
+      "date": "02.05.2023"
+    },
+    {
+      "id": "0c03887c-6738-4bad-a82c-b3b15af31274",
+      "title": "ㅇㅇ",
+      "description": "ㅇㅇ",
+      "writer": "ㅇㅇ",
+      "date": "02.05.2023"
+    },
+    {
+      "id": "62920fa3-ef95-430e-ba47-256b2e8445fd",
+      "title": "레전드",
+      "description": "레전드다이건",
+      "writer": "가짜가",
+      "date": "02.05.2023"
+    },
+    {
+      "id": "da0c7f2d-edef-4b0a-b1d6-a1c04e28c0ca",
+      "title": "ㅇㅇ",
+      "description": "ㅇㅇㅇㅇㅇ",
+      "writer": "ㅇㅇㅇㅇㅇ",
+      "date": "02.05.2023"
+    }
+  ]
+}

@@ -15,7 +15,6 @@ import { infoDivStyle } from "../styles/FeedDetail.styles";
 
 function FeedDetail() {
   const post = useSelector((state) => state.posts.post);
-  console.log(post.title);
   const dispatch = useDispatch();
 
   const { id } = useParams();
@@ -37,7 +36,7 @@ function FeedDetail() {
         <Link to="/feeds" style={linkStyle}>
           <MdArrowBackIos style={{ fontSize: "20px" }} />
         </Link>
-        <StPostTitle>{post.title}</StPostTitle>
+        {/* <StPostTitle>{post.title}</StPostTitle> */}
         <button onClick={() => alert("수정")}>
           <MdOutlineEditNote style={{ fontSize: "30px" }} />
         </button>
@@ -45,12 +44,12 @@ function FeedDetail() {
 
       <div>
         <StPostDescription>
-          <p>{post.description}</p>
+          {/* <p>{post.description}</p> */}
         </StPostDescription>
       </div>
       <div style={infoDivStyle}>
-        <StFeedInfo>{post.writer}</StFeedInfo>
-        <StFeedInfo>{post.date}</StFeedInfo>
+        {/* <StFeedInfo>{post.writer}</StFeedInfo> */}
+        {/* <StFeedInfo>{post.date}</StFeedInfo> */}
       </div>
     </StContainer>
   );

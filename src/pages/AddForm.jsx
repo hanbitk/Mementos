@@ -15,15 +15,16 @@ import { btnDiv } from "../styles/AddForm.styles";
 import { addPost } from "../redux/modules/posts";
 import { useNavigate } from "react-router-dom";
 import { getCurrentDate } from "../redux/modules/posts";
+import api from "../axios/api";
 
 function AddForm() {
-  const id = uuidv4();
+  // const id = uuidv4();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const [post, setPost] = useState({
-    id: 0,
+  const [inputPost, setInputPost] = useState({
+    id: uuidv4(),
     title: "",
     description: "",
     writer: "",
@@ -32,34 +33,55 @@ function AddForm() {
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
-    setPost({ ...post, [name]: value });
+    setInputPost({ ...inputPost, [name]: value });
   };
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (!post.title || !post.description || !post.writer)
-      return alert("Please fill all the fields!");
-    if (post.title.length < 10) return alert("Title must be up to 10 characters");
-    else {
-      dispatch(addPost({ ...post, id }));
-      setPost({
-        id: 0,
-        title: "",
-        description: "",
-        writer: "",
-        date: getCurrentDate(),
-      });
+  // Redux Toolkit AddForm //
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   if (!inputPost.title || !inputPost.description || !inputPost.writer)
+  //     return alert("Please fill all the fields!");
+  //   if (inputPost.title.length < 10) return alert("Title must be up to 10 characters");
+  //   else {
+  //     dispatch(addPost({ ...inputPost, id }));
+  //     setInputPost({
+  //       title: "",
+  //       description: "",
+  //       writer: "",
+  //       date: getCurrentDate(),
+  //     });
 
-      setTimeout(() => {
-        navigate("/feeds");
-      }, 1000);
+  //     setTimeout(() => {
+  //       navigate("/feeds");
+  //     }, 1000);
+  //   }
+  // };
+
+  // Add Form Function
+
+  const submitHandler = async () => {
+    if (!inputPost.title || !inputPost.description || !inputPost.writer)
+      return alert("Please fill all the fields!");
+    else {
+      api.post("/posts", inputPost);
     }
+
+    setInputPost({inputPost});
+
+    setTimeout(() => {
+      navigate("/feeds");
+    }, 1000);
   };
 
   return (
     <div>
       <StContainer display="flex">
-        <StForm onSubmit={submitHandler}>
+        <StForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitHandler();
+          }}
+        >
           <StImgSection>
             🛠️ Upload Img <br /> Coming Soon 🛠️
           </StImgSection>
@@ -68,7 +90,7 @@ function AddForm() {
             <div>
               <StTitle>Title</StTitle>
               <StInput
-                value={post.title}
+                value={inputPost.title}
                 name="title"
                 placeholder="Title (up to 10 characters)"
                 onChange={onChangeHandler}
@@ -76,10 +98,11 @@ function AddForm() {
                 marginBotom="10px"
               />
             </div>
+
             <div>
               <StTitle>Description</StTitle>
               <StTextarea
-                value={post.description}
+                value={inputPost.description}
                 name="description"
                 rows="15"
                 cols="50"
@@ -90,7 +113,7 @@ function AddForm() {
 
             <div style={btnDiv}>
               <StInput
-                value={post.name}
+                value={inputPost.name}
                 name="writer"
                 placeholder="Writer (Up to 5 character)"
                 onChange={onChangeHandler}

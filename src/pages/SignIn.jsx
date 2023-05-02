@@ -24,7 +24,7 @@ const StSignIn = styled.div`
   height: 100vh;
   background-color: var(--color-black);
   color: var(--color-white);
-  font-size: var(--font-size-extra-large);
+  font-size: var(--font-extra-large);
 `;
 
 const linkStyle = {
