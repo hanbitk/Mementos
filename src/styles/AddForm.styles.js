@@ -35,9 +35,9 @@ export const StTitle = styled.p`
 export const StInput = styled.input`
   border: 1px solid var(--color-light-gray);
   padding: 8px;
-  width: 400px;
+  width: ${(props) => props.width};
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: ${(props) => props.marginBottom};
   background-color: var(--color-white);
 `;
 
@@ -57,6 +57,6 @@ export const StTextarea = styled.textarea`
 
 export const btnDiv ={
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     width: '400px',
 }

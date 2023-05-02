@@ -14,6 +14,7 @@ import Button from "../components/Button/Button";
 import { btnDiv } from "../styles/AddForm.styles";
 import { addPost } from "../redux/modules/posts";
 import { useNavigate } from "react-router-dom";
+import { getCurrentDate } from "../redux/modules/posts";
 
 function AddForm() {
   const id = uuidv4();
@@ -25,6 +26,8 @@ function AddForm() {
     id: 0,
     title: "",
     description: "",
+    writer: "",
+    date: getCurrentDate(),
   });
 
   const onChangeHandler = (event) => {
@@ -34,16 +37,23 @@ function AddForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(addPost({ ...post, id }));
-    setPost({
-      id: 0,
-      title: "",
-      description: "",
-    });
+    if (!post.title || !post.description || !post.writer)
+      return alert("Please fill all the fields!");
+    if (post.title.length < 10) return alert("Title must be up to 10 characters");
+    else {
+      dispatch(addPost({ ...post, id }));
+      setPost({
+        id: 0,
+        title: "",
+        description: "",
+        writer: "",
+        date: getCurrentDate(),
+      });
 
-    setTimeout(() => {
-      navigate("/feeds");
-    }, 1000);
+      setTimeout(() => {
+        navigate("/feeds");
+      }, 1000);
+    }
   };
 
   return (
@@ -60,8 +70,10 @@ function AddForm() {
               <StInput
                 value={post.title}
                 name="title"
-                placeholder="Title"
+                placeholder="Title (up to 10 characters)"
                 onChange={onChangeHandler}
+                width="400px"
+                marginBotom="10px"
               />
             </div>
             <div>
@@ -75,8 +87,20 @@ function AddForm() {
                 onChange={onChangeHandler}
               />
             </div>
+
             <div style={btnDiv}>
-              <Button fontSize="var(--font-size-regular)">+ Memento</Button>
+              <StInput
+                value={post.name}
+                name="writer"
+                placeholder="Writer (Up to 5 character)"
+                onChange={onChangeHandler}
+                width="260px"
+                alignSelf="center"
+                marginBotom="0px"
+              />
+              <div>
+                <Button fontSize="var(--font-size-regular)">+ Memento</Button>
+              </div>
             </div>
           </StFormSection>
         </StForm>

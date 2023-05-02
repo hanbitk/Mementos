@@ -11,7 +11,7 @@ export const StFeed = styled.div`
   background-color: var(--color-light-white);
   width: 300px;
   border-radius: 4px;
-  box-shadow: 2px 5px 9px -3px rgba(115,104,104,0.73);
+  box-shadow: 2px 5px 9px -3px rgba(115, 104, 104, 0.73);
 `;
 
 export const StFeedtitle = styled.h4`
@@ -23,19 +23,19 @@ export const StFeedDescription = styled.p`
   padding: 10px;
 `;
 
-export const StFeedDate = styled.p`
+export const StDeleteButton = styled.button`
+  padding: 10px;
+  font-size: var(--font-medium);
+  cursor: pointer;
+`;
+
+export const StFeedInfo = styled.p`
   font-size: var(--font-small);
   padding: 10px;
   color: gray;
-  text-align: right;
 `;
 
-export const StDeleteButton = styled.button`
-    padding: 10px;
-    font-size: var(--font-medium);
-    cursor: pointer;
-`
-export const style = {
-    textDecoration: 'none',
-    color: 'black',
+export const divStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
 }

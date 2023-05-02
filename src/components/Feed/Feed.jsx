@@ -2,16 +2,17 @@ import React from "react";
 import {
   StFeedContainer,
   StFeed,
-  StFeedDate,
   StFeedDescription,
   StFeedtitle,
   StDeleteButton,
+  StFeedInfo,
 } from "../../styles/Feed.styles";
 import { TiDelete } from "react-icons/ti";
 import { useSelector, useDispatch } from "react-redux";
 import Masonry from "react-masonry-css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { deletePost } from "../../redux/modules/posts";
+import { divStyle } from "../../styles/Feed.styles";
 
 function Feed() {
   const posts = useSelector((state) => state.posts.posts);
@@ -23,7 +24,7 @@ function Feed() {
     dispatch(deletePost(id));
   };
 
-  const breakpoints = {
+  const masonryBreakpoints = {
     default: 4,
     1100: 2,
     700: 1,
@@ -31,15 +32,14 @@ function Feed() {
   return (
     <StFeedContainer>
       <Masonry
-        breakpointCols={breakpoints}
+        breakpointCols={masonryBreakpoints}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
         {posts.map((post) => {
           return (
-            // <Link to={`/feeds/${post.id}`}>
             <StFeed key={post.id} onClick={() => navigate(`/feeds/${post.id}`)}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={divStyle}>
                 <StFeedtitle>{post.title}</StFeedtitle>
                 <StDeleteButton
                   onClick={(e) => {
@@ -51,9 +51,11 @@ function Feed() {
                 </StDeleteButton>
               </div>
               <StFeedDescription>{post.description}</StFeedDescription>
-              <StFeedDate>{post.date}</StFeedDate>
+              <div style={divStyle}>
+                <StFeedInfo>{post.writer}</StFeedInfo>
+                <StFeedInfo>{post.date}</StFeedInfo>
+              </div>
             </StFeed>
-            // </Link>
           );
         })}
       </Masonry>

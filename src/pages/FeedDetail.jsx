@@ -9,7 +9,9 @@ import {
   iconStyle,
   linkStyle,
 } from "../styles/FeedDetail.styles";
+import { StFeedInfo } from "../styles/Feed.styles";
 import { MdArrowBackIos, MdOutlineEditNote } from "react-icons/md";
+import { infoDivStyle } from "../styles/FeedDetail.styles";
 
 function FeedDetail() {
   const post = useSelector((state) => state.posts.post);
@@ -45,6 +47,10 @@ function FeedDetail() {
         <StPostDescription>
           <p>{post.description}</p>
         </StPostDescription>
+      </div>
+      <div style={infoDivStyle}>
+        <StFeedInfo>{post.writer}</StFeedInfo>
+        <StFeedInfo>{post.date}</StFeedInfo>
       </div>
     </StContainer>
   );

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
-const getCurrentDate = () => {
+export const getCurrentDate = () => {
   const date = new Date();
   let day = date.getDate();
   let month = date.getMonth() + 1;
@@ -17,24 +17,28 @@ const initialState = {
       id: uuidv4(),
       title: "Best Memento 1",
       description: "Memento 1",
+      writer: "user1",
       date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 2",
       description: "Memento 2",
+      writer: "user2",
       date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 3",
       description: "Memento 3",
+      writer: "user3",
       date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 4",
       description: "Memento 4",
+      writer: "user4",
       date: getCurrentDate()
     },
   ],
@@ -42,6 +46,7 @@ const initialState = {
     id: "0",
     title: "",
     description: "",
+    writer: "",
     date: getCurrentDate(),
   }
 }
