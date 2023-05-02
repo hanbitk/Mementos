@@ -16,13 +16,21 @@ import EditFeed from "../components/Feed/EditFeed";
 import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 function FeedDetail() {
-  const { isLoading, isError, data } = useQuery("posts", getPosts);
-
+  const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
+
+  const { isLoading, isError, data } = useQuery("posts", getPosts);
   const foundPost = data.find((post) => post.id == id);
 
-  const [isOpen, setIsOpen] = useState(false);
   const { lockScroll, openScroll } = useBodyScrollLock();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred.</div>;
+  }
 
   const handleOpen = () => {
     lockScroll();

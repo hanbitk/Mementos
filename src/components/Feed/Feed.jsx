@@ -18,11 +18,10 @@ import { getPosts } from "../../api/posts";
 import { deletePost } from "../../api/posts";
 
 function Feed() {
+  const [posts, setPosts] = useState(null);
   const navigate = useNavigate();
 
   const { isLoading, isError, data } = useQuery("posts", getPosts);
-
-  const [posts, setPosts] = useState(null);
 
   // React Query - Delete Post //
   const queryClient = useQueryClient();
@@ -32,6 +31,14 @@ function Feed() {
       console.log("포스트 삭제 완료하였습니다!");
     },
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred.</div>;
+  }
 
   // Delete Post Function
   const deleteHandler = async (id) => {
