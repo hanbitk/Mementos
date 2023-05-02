@@ -14,16 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { deletePost } from "../../redux/modules/posts";
 
 function Feed() {
-  const getCurrentDate = () => {
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let currentDate = `0${day}.0${month}.${year}`;
-
-    return currentDate;
-  };
-
   const posts = useSelector((state) => state.posts.posts);
   const dispatch = useDispatch();
 
@@ -61,7 +51,7 @@ function Feed() {
                 </StDeleteButton>
               </div>
               <StFeedDescription>{post.description}</StFeedDescription>
-              <StFeedDate>{getCurrentDate()}</StFeedDate>
+              <StFeedDate>{post.date}</StFeedDate>
             </StFeed>
             // </Link>
           );

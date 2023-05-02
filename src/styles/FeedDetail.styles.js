@@ -10,10 +10,10 @@ export const StPostDescription = styled.div`
   width: 350px;
   height: 450px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
-  padding: 10px;
-  text-align: center;
+  padding: 30px 20px 20px 20px;
+  text-align: left;
 `;
 export const linkStyle = {
   textDecoration: "none",
@@ -21,7 +21,6 @@ export const linkStyle = {
 };
 
 export const iconStyle = {
-  marginBottom: "10px",
   display: "flex",
   justifyContent: "space-between",
   width: "100%",

@@ -1,33 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
+const getCurrentDate = () => {
+  const date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let currentDate = `0${day}.0${month}.${year}`;
+
+  return currentDate;
+};
+
 const initialState = {
   posts: [
     {
       id: uuidv4(),
       title: "Best Memento 1",
       description: "Memento 1",
+      date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 2",
       description: "Memento 2",
+      date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 3",
       description: "Memento 3",
+      date: getCurrentDate()
     },
     {
       id: uuidv4(),
       title: "Best Memento 4",
       description: "Memento 4",
+      date: getCurrentDate()
     },
   ],
   post: {
     id: "0",
     title: "",
     description: "",
+    date: getCurrentDate(),
   }
 }
 

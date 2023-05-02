@@ -7,7 +7,7 @@ import {
   StPostTitle,
   StPostDescription,
   iconStyle,
-  linkStyle
+  linkStyle,
 } from "../styles/FeedDetail.styles";
 import { MdArrowBackIos, MdOutlineEditNote } from "react-icons/md";
 
@@ -35,13 +35,13 @@ function FeedDetail() {
         <Link to="/feeds" style={linkStyle}>
           <MdArrowBackIos style={{ fontSize: "20px" }} />
         </Link>
+        <StPostTitle>{post.title}</StPostTitle>
         <button onClick={() => alert("수정")}>
           <MdOutlineEditNote style={{ fontSize: "30px" }} />
         </button>
       </div>
 
       <div>
-        <StPostTitle>{post.title}</StPostTitle>
         <StPostDescription>
           <p>{post.description}</p>
         </StPostDescription>
