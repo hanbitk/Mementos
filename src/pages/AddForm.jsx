@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import {
   StForm,
@@ -12,16 +11,13 @@ import {
 import { StContainer } from "../styles/Container.styles";
 import Button from "../components/Button/Button";
 import { btnDiv } from "../styles/AddForm.styles";
-import { addPost } from "../redux/modules/posts";
 import { useNavigate } from "react-router-dom";
 import { getCurrentDate } from "../redux/modules/posts";
-import api from "../axios/api";
+import { addPost } from "../api/posts";
+import { useMutation, useQueryClient } from "react-query";
 
 function AddForm() {
-  // const id = uuidv4();
   const navigate = useNavigate();
-
-  const dispatch = useDispatch();
 
   const [inputPost, setInputPost] = useState({
     id: uuidv4(),
@@ -35,38 +31,23 @@ function AddForm() {
     const { name, value } = event.target;
     setInputPost({ ...inputPost, [name]: value });
   };
+  
+  // React Query - Add newPost //
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addPost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      console.log("포스트 추가 성공하였습니다!");
+    },
+  });
 
-  // Redux Toolkit AddForm //
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   if (!inputPost.title || !inputPost.description || !inputPost.writer)
-  //     return alert("Please fill all the fields!");
-  //   if (inputPost.title.length < 10) return alert("Title must be up to 10 characters");
-  //   else {
-  //     dispatch(addPost({ ...inputPost, id }));
-  //     setInputPost({
-  //       title: "",
-  //       description: "",
-  //       writer: "",
-  //       date: getCurrentDate(),
-  //     });
-
-  //     setTimeout(() => {
-  //       navigate("/feeds");
-  //     }, 1000);
-  //   }
-  // };
-
-  // Add Form Function
-
+  // Add newPost Function
   const submitHandler = async () => {
     if (!inputPost.title || !inputPost.description || !inputPost.writer)
       return alert("Please fill all the fields!");
     else {
-      api.post("/posts", inputPost);
+      mutation.mutate(inputPost);
     }
-
-    setInputPost({inputPost});
 
     setTimeout(() => {
       navigate("/feeds");
@@ -82,11 +63,13 @@ function AddForm() {
             submitHandler();
           }}
         >
+          {/* Add Image Upload Field - TBD */}
           <StImgSection>
             🛠️ Upload Img <br /> Coming Soon 🛠️
           </StImgSection>
 
           <StFormSection>
+            {/* Add Title Input */}
             <div>
               <StTitle>Title</StTitle>
               <StInput
@@ -99,6 +82,7 @@ function AddForm() {
               />
             </div>
 
+            {/* Add Description Input */}
             <div>
               <StTitle>Description</StTitle>
               <StTextarea
@@ -111,6 +95,7 @@ function AddForm() {
               />
             </div>
 
+            {/* Add Writer Input + Submit Button */}
             <div style={btnDiv}>
               <StInput
                 value={inputPost.name}

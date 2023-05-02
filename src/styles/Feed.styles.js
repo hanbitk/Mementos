@@ -39,3 +39,9 @@ export const divStyle = {
   display: 'flex',
   justifyContent: 'space-between',
 }
+
+export const masonryBreakpoints = {
+  default: 4,
+  1100: 2,
+  700: 1,
+};

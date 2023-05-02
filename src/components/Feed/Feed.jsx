@@ -8,67 +8,36 @@ import {
   StFeedInfo,
 } from "../../styles/Feed.styles";
 import { TiDelete } from "react-icons/ti";
-import { useSelector, useDispatch } from "react-redux";
 import Masonry from "react-masonry-css";
 import { useNavigate } from "react-router-dom";
-import { deletePost } from "../../redux/modules/posts";
-import { divStyle } from "../../styles/Feed.styles";
-import { useEffect, useState } from "react";
+import { divStyle, masonryBreakpoints } from "../../styles/Feed.styles";
+import { useState } from "react";
 import api from "../../axios/api";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getPosts } from "../../api/posts";
+import { deletePost } from "../../api/posts";
 
 function Feed() {
-  // const posts = useSelector((state) => state.posts.posts);
-  const dispatch = useDispatch();
-
-  const [posts, setPosts] = useState(null);
-  const [targetId, setTargetId] = useState("");
-  const [description, setDescription] = useState("");
-
   const navigate = useNavigate();
 
-  // const deleteHandler = (id) => {
-  //   dispatch(deletePost(id));
-  // };
+  const { isLoading, isError, data } = useQuery("posts", getPosts);
 
-  const masonryBreakpoints = {
-    default: 4,
-    1100: 2,
-    700: 1,
-  };
+  const [posts, setPosts] = useState(null);
 
-  // Read Posts Function
-  const fetchPosts = async () => {
-    const { data } = await api.get("/posts");
-
-    setPosts(data);
-  };
-
-  useEffect(() => {
-    //Get db
-    fetchPosts();
-  }, []);
+  // React Query - Delete Post //
+  const queryClient = useQueryClient();
+  const mutation = useMutation(deletePost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      console.log("포스트 삭제 완료하였습니다!");
+    },
+  });
 
   // Delete Post Function
   const deleteHandler = async (id) => {
-    api.delete(`/posts/${id}`);
-    setPosts(posts.filter((post) => post.id !== id));
-  };
-
-  // Update Post Function
-  const updateHandler = async (id) => {
-    api.patch(`/posts/${targetId}`, {
-      description: description,
-    });
-
-    setPosts(
-      posts.map((post) => {
-        if (post.id == targetId) {
-          return { ...post, description };
-        } else {
-          return post;
-        }
-      })
-    );
+    const newFeed = data.filter((post) => post.id !== id);
+    mutation.mutate(id);
+    setPosts(newFeed);
   };
 
   return (
@@ -78,26 +47,7 @@ function Feed() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        <div>
-          <input
-            value={targetId}
-            type="text"
-            placeholder="id"
-            onChange={(e) => {
-              setTargetId(e.target.value);
-            }}
-          />
-          <input
-            value={description}
-            type="text"
-            placeholder="description"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          />
-          <button onClick={updateHandler}>Update</button>
-        </div>
-        {posts?.map((post) => {
+        {data?.map((post) => {
           return (
             <StFeed key={post.id} onClick={() => navigate(`/feeds/${post.id}`)}>
               <div style={divStyle}>
@@ -105,7 +55,6 @@ function Feed() {
                 <StDeleteButton
                   onClick={(e) => {
                     e.stopPropagation();
-                    // deleteHandler(post.id);
                     deleteHandler(post.id);
                   }}
                 >

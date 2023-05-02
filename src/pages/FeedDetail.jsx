@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getPostByID } from "../redux/modules/posts";
+import { useState } from "react";
 import { StContainer } from "../styles/Container.styles";
 import {
   StPostTitle,
@@ -12,18 +10,29 @@ import {
 import { StFeedInfo } from "../styles/Feed.styles";
 import { MdArrowBackIos, MdOutlineEditNote } from "react-icons/md";
 import { infoDivStyle } from "../styles/FeedDetail.styles";
+import { useQuery } from "react-query";
+import { getPosts } from "../api/posts";
+import EditFeed from "../components/Feed/EditFeed";
+import { useBodyScrollLock } from "../hooks/useBodyScrollLock";
 
 function FeedDetail() {
-  const post = useSelector((state) => state.posts.post);
-  const dispatch = useDispatch();
+  const { isLoading, isError, data } = useQuery("posts", getPosts);
 
   const { id } = useParams();
+  const foundPost = data.find((post) => post.id == id);
 
-  console.log(id);
+  const [isOpen, setIsOpen] = useState(false);
+  const { lockScroll, openScroll } = useBodyScrollLock();
 
-  useEffect(() => {
-    dispatch(getPostByID(id));
-  }, [dispatch, id]);
+  const handleOpen = () => {
+    lockScroll();
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    openScroll();
+    setIsOpen(false);
+  };
 
   return (
     <StContainer
@@ -36,21 +45,22 @@ function FeedDetail() {
         <Link to="/feeds" style={linkStyle}>
           <MdArrowBackIos style={{ fontSize: "20px" }} />
         </Link>
-        {/* <StPostTitle>{post.title}</StPostTitle> */}
-        <button onClick={() => alert("수정")}>
+        <StPostTitle>{foundPost.title}</StPostTitle>
+        <button onClick={handleOpen}>
           <MdOutlineEditNote style={{ fontSize: "30px" }} />
         </button>
       </div>
-
       <div>
         <StPostDescription>
-          {/* <p>{post.description}</p> */}
+          <p>{foundPost.description}</p>
         </StPostDescription>
       </div>
       <div style={infoDivStyle}>
-        {/* <StFeedInfo>{post.writer}</StFeedInfo> */}
-        {/* <StFeedInfo>{post.date}</StFeedInfo> */}
+        <StFeedInfo>{foundPost.writer}</StFeedInfo>
+        <StFeedInfo>{foundPost.date}</StFeedInfo>
       </div>
+
+      {isOpen && <EditFeed isOpen={isOpen} handleClose={handleClose}/>}
     </StContainer>
   );
 }
