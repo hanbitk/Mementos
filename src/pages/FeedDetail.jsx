@@ -1,19 +1,24 @@
 import { useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPostByID } from "../redux/modules/posts";
 import { StContainer } from "../styles/Container.styles";
-import { StPostTitle, StPostDescription } from "../styles/FeedDetail.styles";
-import { linkStyle } from "../styles/FeedDetail.styles";
+import {
+  StPostTitle,
+  StPostDescription,
+  iconStyle,
+  linkStyle
+} from "../styles/FeedDetail.styles";
+import { MdArrowBackIos, MdOutlineEditNote } from "react-icons/md";
 
 function FeedDetail() {
-  const posts = useSelector((state) => state.posts.post);
-  console.log(posts.title)
+  const post = useSelector((state) => state.posts.post);
+  console.log(post.title);
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-
   const { id } = useParams();
+
+  console.log(id);
 
   useEffect(() => {
     dispatch(getPostByID(id));
@@ -26,16 +31,21 @@ function FeedDetail() {
       justifyContent="center"
       alignItems="center"
     >
-      <Link to="/feeds" style={linkStyle}>
-        goback
-      </Link>
-      <StPostTitle>{posts.title}</StPostTitle>
-      {/* <StImg /> */}
-      <StPostDescription>
-        <p>{posts.description}</p>
-      </StPostDescription>
+      <div style={iconStyle}>
+        <Link to="/feeds" style={linkStyle}>
+          <MdArrowBackIos style={{ fontSize: "20px" }} />
+        </Link>
+        <button onClick={() => alert("수정")}>
+          <MdOutlineEditNote style={{ fontSize: "30px" }} />
+        </button>
+      </div>
 
-      <button onClick={() => alert('수정')}>수정하기</button>
+      <div>
+        <StPostTitle>{post.title}</StPostTitle>
+        <StPostDescription>
+          <p>{post.description}</p>
+        </StPostDescription>
+      </div>
     </StContainer>
   );
 }

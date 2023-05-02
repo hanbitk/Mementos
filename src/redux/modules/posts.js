@@ -5,22 +5,22 @@ const initialState = {
   posts: [
     {
       id: uuidv4(),
-      title: "#Best Memento 1",
+      title: "Best Memento 1",
       description: "Memento 1",
     },
     {
       id: uuidv4(),
-      title: "#Best Memento 2",
+      title: "Best Memento 2",
       description: "Memento 2",
     },
     {
       id: uuidv4(),
-      title: "#Best Memento 3",
+      title: "Best Memento 3",
       description: "Memento 3",
     },
     {
       id: uuidv4(),
-      title: "#Best Memento 4",
+      title: "Best Memento 4",
       description: "Memento 4",
     },
   ],

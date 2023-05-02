@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import {
   StForm,
@@ -19,9 +19,8 @@ function AddForm() {
   const id = uuidv4();
   const navigate = useNavigate();
 
-  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  
+
   const [post, setPost] = useState({
     id: 0,
     title: "",
@@ -33,7 +32,6 @@ function AddForm() {
     setPost({ ...post, [name]: value });
   };
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addPost({ ...post, id }));
@@ -43,9 +41,9 @@ function AddForm() {
       description: "",
     });
 
-    setTimeout(() =>{
+    setTimeout(() => {
       navigate("/feeds");
-    }, 1000)
+    }, 1000);
   };
 
   return (
