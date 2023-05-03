@@ -1,6 +1,6 @@
 import React from "react";
 import { StEditContainer, StEditForm } from "../../styles/EditFeed.styles";
-import { StTitle, StInput, StTextarea } from "../../styles/AddForm.styles";
+import { StTitle, StTextarea } from "../../styles/AddForm.styles";
 import Button from "../Button/Button";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getPosts } from "../../api/posts";
 
-function EditFeed() {
+function EditFeed({isOpen, handleClose}) {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
@@ -23,7 +23,6 @@ function EditFeed() {
     onSuccess: () => {
       queryClient.invalidateQueries("posts");
       console.log("포스트 수정 완료하였습니다!");
-      navigate(`/feeds`);
     },
   });
 
@@ -65,7 +64,10 @@ function EditFeed() {
         <div>
           <Button
             fontSize="var(--font-size-regular)"
-            onClick={() => updateHandler(foundData.id)}
+            onClick={() => {
+              updateHandler(foundData.id);
+              handleClose();
+            }}
           >
             Edit Memento
           </Button>

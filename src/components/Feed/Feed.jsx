@@ -12,7 +12,6 @@ import Masonry from "react-masonry-css";
 import { useNavigate } from "react-router-dom";
 import { divStyle, masonryBreakpoints } from "../../styles/Feed.styles";
 import { useState } from "react";
-import api from "../../axios/api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getPosts } from "../../api/posts";
 import { deletePost } from "../../api/posts";

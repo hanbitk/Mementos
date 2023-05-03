@@ -22,8 +22,6 @@ function FeedDetail() {
   const { isLoading, isError, data } = useQuery("posts", getPosts);
   const foundPost = data.find((post) => post.id == id);
 
-  const { lockScroll, openScroll } = useBodyScrollLock();
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -33,12 +31,10 @@ function FeedDetail() {
   }
 
   const handleOpen = () => {
-    lockScroll();
     setIsOpen(true);
   };
 
   const handleClose = () => {
-    openScroll();
     setIsOpen(false);
   };
 

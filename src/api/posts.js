@@ -8,8 +8,8 @@ const getPosts = async () => {
       `${process.env.REACT_APP_SERVER_URL}/posts`
     );
     return response.data;
-  } catch {
-    console.log("데이터 불러오는 중에 오류 발생");
+  } catch(err){
+    console.log(`데이터 불러오는 중에 오류 발생: ${err}`);
   }
 };
 

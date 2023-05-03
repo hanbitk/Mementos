@@ -8,10 +8,17 @@ export const StFeedContainer = styled.div`
 
 export const StFeed = styled.div`
   border: 1px solid var(--color-light-gray);
-  background-color: var(--color-light-white);
+  background-color: var(--color-white);
   width: 300px;
   border-radius: 4px;
   box-shadow: 2px 5px 9px -3px rgba(115, 104, 104, 0.73);
+  cursor: pointer;
+
+  &:hover{
+    transform: translateY(3px);
+    transition: 0.3s;
+    background-color: #e2e5e2;
+  }
 `;
 
 export const StFeedtitle = styled.h4`
