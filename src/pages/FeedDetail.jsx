@@ -20,7 +20,6 @@ function FeedDetail() {
   const { id } = useParams();
 
   const { isLoading, isError, data } = useQuery("posts", getPosts);
-  const foundPost = data.find((post) => post.id == id);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -29,6 +28,8 @@ function FeedDetail() {
   if (isError) {
     return <div>Error occurred.</div>;
   }
+
+  const foundPost = data.find((post) => post.id == id);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -64,7 +65,7 @@ function FeedDetail() {
         <StFeedInfo>{foundPost.date}</StFeedInfo>
       </div>
 
-      {isOpen && <EditFeed isOpen={isOpen} handleClose={handleClose}/>}
+      {isOpen && <EditFeed isOpen={isOpen} handleClose={handleClose} />}
     </StContainer>
   );
 }

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { divStyle } from "./Feed.styles";
 
 export const StPostTitle = styled.h1`
   text-align: center;

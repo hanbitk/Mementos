@@ -4,7 +4,7 @@ import AddSection from "../components/AddSection/AddSection";
 import Masonry from "react-masonry-css";
 import { masonryBreakpoints } from "../styles/Feed.styles";
 import { StFeedContainer } from "../styles/Feed.styles";
-import { StImg } from "../styles/Home.styles";
+import { StImg, StImgInfo } from "../styles/Home.styles";
 import img1 from "../assets/img/1.jpeg";
 import img2 from "../assets/img/2.jpeg";
 import img3 from "../assets/img/3.jpeg";
@@ -27,21 +27,69 @@ function Home() {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          <StImg width="300px" height="500px" src={img2} />
+          <div>
+            <StImg width="300px" height="400px" src={img2} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="200px" src={img3} />
+          <div>
+            <StImg width="300px" height="200px" src={img3} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="500px" src={img4} />
+          <div>
+            <StImg width="300px" height="400px" src={img4} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="200px" src={img1} />
+          <div>
+            <StImg width="300px" height="200px" src={img1} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="200px" src={img8} />
+          <div>
+            <StImg width="300px" height="200px" src={img8} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="500px" src={img7} />
+          <div>
+            <StImg width="300px" height="400px" src={img7} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="200px" src={img6} />
+          <div>
+            <StImg width="300px" height="200px" src={img6} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
 
-          <StImg width="300px" height="500px" src={img5} />
+          <div>
+            <StImg width="300px" height="400px" src={img5} />
+            <StImgInfo>
+              <p>Post Title</p>
+              <p>Profile Name</p>
+            </StImgInfo>
+          </div>
         </Masonry>
       </StFeedContainer>
     </div>

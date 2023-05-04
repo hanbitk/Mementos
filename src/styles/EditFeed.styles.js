@@ -21,3 +21,9 @@ export const StEditForm = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const StEditFormButtons = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+`

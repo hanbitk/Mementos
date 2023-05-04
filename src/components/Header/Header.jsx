@@ -31,7 +31,7 @@ function Header() {
         <StIcon>
           <FaSistrix />
         </StIcon>
-        <Button onClick={() => navigate("/sign-in")} size="var(--size-small)" fontSize="var(--font-regular)">
+        <Button onClick={() => navigate("/login")} size="var(--size-small)" fontSize="var(--font-regular)">
           Sign In
         </Button>
       </div>

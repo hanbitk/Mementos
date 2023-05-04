@@ -15,7 +15,7 @@ const Router = () => {
           <Route path="feeds" element={<Feeds />} />
           <Route path="add" element={<AddForm />} />
           <Route path="feeds/:id" element={<FeedDetail />} />
-          <Route path="sign-in" element={<SignIn/>}/>
+          <Route path="login" element={<SignIn/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>

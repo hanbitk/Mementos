@@ -1,21 +1,19 @@
 import React from "react";
-import { StEditContainer, StEditForm } from "../../styles/EditFeed.styles";
+import { StEditContainer, StEditForm, StEditFormButtons } from "../../styles/EditFeed.styles";
 import { StTitle, StTextarea } from "../../styles/AddForm.styles";
 import Button from "../Button/Button";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { updatePost } from "../../api/posts";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getPosts } from "../../api/posts";
 
-function EditFeed({isOpen, handleClose}) {
+function EditFeed({ handleClose }) {
   const [description, setDescription] = useState("");
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const { isLoading, isError, data } = useQuery("posts", getPosts);
-  const foundData = data?.find((post) => post.id == id);
 
   // React Query - Update Post //
   const queryClient = useQueryClient();
@@ -38,17 +36,18 @@ function EditFeed({isOpen, handleClose}) {
     return <div>Error occurred.</div>;
   }
 
-  
+  const foundData = data?.find((post) => post.id == id);
+
   // Update Post Function
   const updateHandler = async (id) => {
+    if (!description) return alert('Changes cannot be in blank!');
     mutation.mutate({ id, description });
   };
 
   return (
     <StEditContainer>
-      <div></div>
       <StEditForm>
-        {/* Add Description Input */}
+        {/* Edit Description Input */}
         <div>
           <StTitle>Description</StTitle>
           <StTextarea
@@ -61,17 +60,30 @@ function EditFeed({isOpen, handleClose}) {
           />
         </div>
 
-        <div>
+        {/* Edit & Cancel Button */}
+        <StEditFormButtons>
           <Button
             fontSize="var(--font-size-regular)"
             onClick={() => {
               updateHandler(foundData.id);
-              handleClose();
+              if (description) {
+                setTimeout(() =>{
+                  handleClose();
+                }, 500)
+              }
             }}
           >
             Edit Memento
           </Button>
-        </div>
+          <Button
+            fontSize="var(--font-size-regular)"
+            onClick={() => {
+              handleClose();
+            }}
+          >
+            Cancel
+          </Button>
+        </StEditFormButtons>
       </StEditForm>
     </StEditContainer>
   );
