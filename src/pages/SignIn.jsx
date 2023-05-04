@@ -31,7 +31,7 @@ function SignIn() {
         <StSignInFormHeader>
           <div style={{ display: "flex", marginBottom: "20px" }}>
             <MdLogin style={signInIconStyle} />
-            <h4>Sign-in with Username</h4>
+            <h4>Sign In with Username</h4>
           </div>
           <StSignIn>
             <StSignInInputs>
