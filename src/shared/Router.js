@@ -5,6 +5,7 @@ import AddForm from "../pages/AddForm";
 import FeedDetail from "../pages/FeedDetail";
 import Layout from "../components/Layout/Layout";
 import SignIn from "../pages/SignIn";
+import RegisterUser from "../pages/RegisterUser";
 
 const Router = () => {
   return (
@@ -15,7 +16,8 @@ const Router = () => {
           <Route path="feeds" element={<Feeds />} />
           <Route path="add" element={<AddForm />} />
           <Route path="feeds/:id" element={<FeedDetail />} />
-          <Route path="login" element={<SignIn/>}/>
+          <Route path="login" element={<SignIn />} />
+          <Route path="register" element={<RegisterUser />} />
         </Routes>
       </Layout>
     </BrowserRouter>

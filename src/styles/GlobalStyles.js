@@ -40,7 +40,6 @@ export const GlobalStyles = createGlobalStyle`
     body{
         font-family: 'Inter', sans-serif;
         background-color: var(--color-white);
-        padding-top: 130px;
     }
 
     button{
@@ -56,6 +55,7 @@ export const GlobalStyles = createGlobalStyle`
         background-image: none;
         background-color: transparent;
         box-shadow: none;
+        outline: none;
     } 
 
     ul{

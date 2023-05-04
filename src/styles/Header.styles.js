@@ -8,7 +8,7 @@ export const StHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   background: var(--color-white);
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 1;
 `;

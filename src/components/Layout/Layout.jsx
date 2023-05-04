@@ -1,10 +1,14 @@
 import React from "react";
 import Header from "../Header/Header";
+import { useLocation } from "react-router-dom";
 
-function Layout({children}) {
+function Layout({ children }) {
+  const location = useLocation();
   return (
     <>
-      <Header />
+      {location.pathname !== "/login" && (
+        <Header />
+      )}
       {children}
     </>
   );

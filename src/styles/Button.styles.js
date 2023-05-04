@@ -7,4 +7,5 @@ export const Stbutton = styled.button`
   font-size: ${(props) => props.fontSize};
   padding: 10px;
   border-radius: 4px;
+  cursor: pointer;
 `;
